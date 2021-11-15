@@ -22,7 +22,7 @@ jobs:
           # Required, playbook filepath
           playbook: deploy.yml
           # Optional, directory where playbooks live
-          directory: /home/runner/work/docker/docker/ansible/
+          directory: /home/runner/work/docker/docker/
           # Optional, SSH private key
           key: ${{secrets.SSH_PRIVATE_KEY}}
           # Optional, literal inventory file contents
