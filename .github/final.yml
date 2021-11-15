@@ -11,8 +11,8 @@ jobs:
       - name: Testing action
         uses: arillso/action.playbook@master
         with:
-          playbook: ansible/deploy.yml
-          inventory: /ansible/inventory/ansible_hosts
+          playbook: deploy.yml
+          inventory: /ansible_hosts
           private_key: ${{secrets.SSH_PRIVATE_KEY}}
           user: shahars
         env:
