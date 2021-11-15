@@ -12,8 +12,10 @@ jobs:
         uses: arillso/action.playbook@master
         with:
           playbook: deploy.yml
-          inventory: /ansible_hosts
+          inventory: ansible_hosts
           private_key: ${{secrets.SSH_PRIVATE_KEY}}
+          verbose: 4
+
           user: shahars
         env:
           ANSIBLE_HOST_KEY_CHECKING: "false"
