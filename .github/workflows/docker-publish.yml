@@ -14,16 +14,27 @@ jobs:
     permissions:
       contents: read
       packages: write
-
     steps:
       - name: Run playbook
-        uses: dawidd6/action-ansible-playbook@v2
-        with:
-          # Required, playbook filepath
-          playbook: deploy.yml
-          # Optional, directory where playbooks live
-          directory: /home/runner/work/docker/docker/
-          # Optional, SSH private key
-          key: ${{secrets.SSH_PRIVATE_KEY}}
-          # Optional, literal inventory file contents
-       
+    #     uses: dawidd6/action-ansible-playbook@v2
+    #     with:
+    #       # Required, playbook filepath
+    #       playbook: deploy.yml
+    #       # Optional, directory where playbooks live
+    #       directory: /home/runner/work/docker/docker/
+    #       # Optional, SSH private key
+    #       key: ${{secrets.SSH_PRIVATE_KEY}}
+    #       # Optional, literal inventory file contents
+          uses: saubermacherag/ansible-playbook-docker-action@v1.4
+          with:
+            playbookName: '/ansible/deploy.yml'
+            inventoryFile: '/ansible/inventory/ansible_hosts'
+          #  requirementsFile: ".ansible/requirements.yml"
+            # galaxyGithubUser: ${{ secrets.GITHUB_USER }}
+            # galaxyGithubToken: ${{ secrets.Github_PAT }}
+            # rolesPath: ".ansible/playbooks/roles"
+            keyFile: ${{secrets.SSH_PRIVATE_KEY}}
+            # keyFileVaultPass: ${{ secrets.KEYFILE_VAULT_PASS }}
+            # extraFile: ".ansible/extra.yml"
+            # extraVars: "-e my_first_extra=${{ github.actor }} -e my_second_one=${{ github.sha }}"
+            # verbosity: "vv"
