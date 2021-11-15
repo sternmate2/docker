@@ -20,16 +20,10 @@ jobs:
         uses: dawidd6/action-ansible-playbook@v2
         with:
           # Required, playbook filepath
-          playbook: remote.yml
+          playbook: deploy.yml
           # Optional, directory where playbooks live
-          #directory: ./
+          directory: ./ansible/
           # Optional, SSH private key
           key: ${{secrets.SSH_PRIVATE_KEY}}
           # Optional, literal inventory file contents
-          inventory: |
-            [all]
-            52.186.137.20
-
-            [group1]
-            52.186.137.20
        
