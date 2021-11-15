@@ -1,22 +1,16 @@
 name: Testing Action
 
 on: [push, pull_request]
-
 jobs:
-  test_action:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v1
-
-      - name: Testing action
-        uses: arillso/action.playbook@master
-        with:
-          playbook: deploy.yml
-          inventory: ansible_hosts
-          private_key: ${{secrets.SSH_PRIVATE_KEY}}
-          verbose: 4
-
-          user: shahars
-        env:
-          ANSIBLE_HOST_KEY_CHECKING: "false"
-          ANSIBLE_DEPRECATION_WARNINGS: "false"
+    - uses: actions/checkout@v2
+    - name: Play Ansible Playbook
+      uses: arillso/action.playbook@master
+      with:
+        playbook: ansible/deploy.yml
+        inventory: ansible/inventory/ansible_hosts.yml
+        private_key: ${{secrets.SSH_PRIVATE_KEY}}
+        verbose: 4
